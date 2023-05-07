@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Drastic.Play.Win (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Drastic.Play.Win (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
