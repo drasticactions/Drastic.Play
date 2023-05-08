@@ -11,11 +11,7 @@
 
     <Window.Content>
         <Grid x:Name="MainWindowGrid">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="42"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Border x:Name="AppTitleBar" Grid.Row="0">
+            <Border Height="42" x:Name="AppTitleBar" Grid.Row="0">
             </Border>
             <local:ContextHolder Grid.Row="1" x:Name="MainFrame"/>
         </Grid>

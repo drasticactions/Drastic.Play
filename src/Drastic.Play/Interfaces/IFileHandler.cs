@@ -28,5 +28,13 @@ namespace Drastic.Play.Interfaces
         /// </summary>
         /// <returns>Stream.</returns>
         Task<string> PickVideo();
+
+        /// <summary>
+        /// Opens File handler for video, gets path.
+        /// </summary>
+        /// <returns>Stream.</returns>
+        Task<List<string>> PickVideos();
+
+        Task<string> PickUrl();
     }
 }

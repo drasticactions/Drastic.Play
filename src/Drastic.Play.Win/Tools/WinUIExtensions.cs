@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Input;
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.Storage.Streams;
+using WinUIEx;
 
 namespace Drastic.Play.Win.Tools
 {
@@ -136,6 +138,54 @@ namespace Drastic.Play.Win.Tools
         {
             Type type = typeof(UIElement);
             type.InvokeMember("ProtectedCursor", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.SetProperty | BindingFlags.Instance, null, uiElement, new object[] { cursor });
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether if the current view is full screen.
+        /// </summary>
+        /// <returns>Bool.</returns>
+        public static bool IsFullScreen(this Window window) => false;
+
+        /// <summary>
+        /// Gets a value indicating whether the current view is compact overlay.
+        /// </summary>
+        public static bool IsCompactOverlay(this Window window) => window.GetAppWindow().Presenter.Kind == Microsoft.UI.Windowing.AppWindowPresenterKind.CompactOverlay;
+
+        /// <summary>
+        /// Gets the title bar height.
+        /// </summary>
+        public static double TitleBarHeight(this Window window) => window.GetAppWindow().TitleBar.Height;
+
+        /// <summary>
+        /// Go to full screen.
+        /// </summary>
+        /// <param name="fullScreen">Use Full Screen.</param>
+        public static void GoFullScreen(this Window window, bool fullScreen)
+        {
+            if (!fullScreen)
+            {
+                window.GetAppWindow().SetPresenter(AppWindowPresenterKind.Default);
+            }
+            else
+            {
+                window.GetAppWindow().SetPresenter(AppWindowPresenterKind.FullScreen);
+            }
+        }
+
+        /// <summary>
+        /// Go to compact view.
+        /// </summary>
+        /// <param name="compactMode">Use compact mode.</param>
+        public static async void GoCompact(this Window window, bool compactMode)
+        {
+            if (!compactMode)
+            {
+                window.GetAppWindow().SetPresenter(AppWindowPresenterKind.Default);
+            }
+            else
+            {
+                window.GetAppWindow().SetPresenter(AppWindowPresenterKind.CompactOverlay);
+            }
         }
     }
 }
